@@ -16,7 +16,6 @@ class KNN {
         this.k = k;
         this.data = data;
         this.labels = labels;
-        this.distanceMap = [];
     }
 
     generateDistanceMap(point) {

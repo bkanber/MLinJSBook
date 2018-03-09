@@ -1,6 +1,6 @@
 import readline from 'readline';
 import fs from 'fs';
-import BayesClassifier, {simpleTokenizer, bigramTokenizer} from "./bayes";
+import BayesClassifier, {simpleTokenizer} from "./bayes";
 
 const classifier = new BayesClassifier(simpleTokenizer);
 
@@ -66,3 +66,23 @@ Promise.all([
 
 
 })
+
+// Promise.all([
+//     trainer('./data/train_positive.txt', 'positive', classifier),
+//     trainer('./data/train_negative.txt', 'negative', classifier)
+// ]).then(() => {
+//
+//     const tests = [
+//         "i really hated this awful movie, it was so bad I didn't even know what to do with myself",
+//         "this was the best movie i've ever seen. it was so exciting, i was on the edge of my seat every minute",
+//         "i am indifferent about this"
+//     ];
+//
+//     tests.forEach(test => {
+//         console.log("Testing: " + test);
+//         const result = classifier.predict(test);
+//         console.log(result);
+//     });
+//
+//
+// });
