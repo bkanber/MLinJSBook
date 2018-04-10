@@ -21,6 +21,7 @@ class KNN {
     generateDistanceMap(point) {
 
         const map = [];
+        let maxDistanceInMap;
 
         for (let index = 0, len = this.data.length; index < len; index++) {
 
@@ -28,15 +29,35 @@ class KNN {
             const otherPointLabel = this.labels[index];
             const thisDistance = distance(point, otherPoint);
 
-            map.push({
-                index,
-                distance: thisDistance,
-                label: otherPointLabel
-            });
+            /**
+             * Keep at most k items in the map.
+             * Much more efficient for large sets, because this
+             * avoids storing and then sorting a million-item map.
+             * This adds many more sort operations, but hopefully k is small.
+             */
+            if (!maxDistanceInMap || thisDistance < maxDistanceInMap) {
 
+                // Only add an item if it's closer than the farthest of the candidates
+                map.push({
+                    index,
+                    distance: thisDistance,
+                    label: otherPointLabel
+                });
+
+                // Sort the map so the closest is first
+                map.sort((a, b) => a.distance < b.distance ? -1 : 1);
+
+                // If the map became too long, drop the farthest item
+                if (map.length > this.k) {
+                    map.pop();
+                }
+
+                // Update this value for the next comparison
+                maxDistanceInMap = map[map.length - 1].distance;
+
+            }
         }
 
-        map.sort((a, b) => a.distance < b.distance ? -1 : 1);
 
         return map;
     }
