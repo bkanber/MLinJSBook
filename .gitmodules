@@ -1,0 +1,3 @@
+[submodule "tfjs-examples"]
+	path = tfjs-examples
+	url = https://github.com/tensorflow/tfjs-examples
