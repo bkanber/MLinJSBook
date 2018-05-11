@@ -1,0 +1,16 @@
+{
+  "name": "Ch10-NLP",
+  "version": "1.0.0",
+  "description": "ML in JS Example for Chapter 10 - NLP",
+  "main": "src/index.js",
+  "author": "Burak Kanber",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "compromise": "^11.7.0",
+    "natural": "^0.5.6",
+    "wordnet-db": "^3.1.6"
+  }
+}
